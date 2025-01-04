@@ -9,8 +9,8 @@ import { TypeOrmModule } from '@nestjs/typeorm';
       type: 'postgres',
       host: 'localhost',
       port: 5432,
-      username: 'devhyun',
-      database: 'matzip-server',
+      username: 'simplogis',
+      database: 'mttzip-app',
       entities: [__dirname + '/**/*.entity.{js,ts}'],
       //  개발에서만 true
       synchronize: true,
