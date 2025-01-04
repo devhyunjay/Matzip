@@ -1,7 +1,7 @@
 import { Module } from '@nestjs/common';
-import { AppController } from './app.controller';
-import { AppService } from './app.service';
 import { TypeOrmModule } from '@nestjs/typeorm';
+import { PostController } from './post/post.controller';
+import { PostModule } from './post/post.module';
 
 @Module({
   imports: [
@@ -15,8 +15,9 @@ import { TypeOrmModule } from '@nestjs/typeorm';
       //  개발에서만 true
       synchronize: true,
     }),
+    PostModule,
   ],
-  controllers: [AppController],
-  providers: [AppService],
+  controllers: [PostController],
+  providers: [],
 })
 export class AppModule {}
