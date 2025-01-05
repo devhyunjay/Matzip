@@ -1,4 +1,4 @@
-import { Controller, Get } from '@nestjs/common';
+import { Body, Controller, Get, Post } from '@nestjs/common';
 import { PostService } from './post.service';
 
 @Controller('post')
@@ -11,9 +11,9 @@ export class PostController {
     return this.postService.getPosts();
   }
 
-  //podt 생성
-  // @Post('/posts')
-  // createPost(@Body() createPostDto: CreatePostDto){
-  //   return this.postService.createPost()
-  // }
+  //post 생성
+  @Post('/posts')
+  createPost(@Body() createPostDto: CreatePostDto){
+    return this.postService.createPost()
+  }
 }
