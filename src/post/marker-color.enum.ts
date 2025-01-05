@@ -1,5 +1,5 @@
-export class MarkerColor {
-  RED = 'RED';
-  BLUE = 'BLUE';
-  GREEN = 'GREEN';
+export enum MarkerColor {
+  RED = 'RED',
+  BLUE = 'BLUE',
+  GREEN = 'GREEN',
 }
