@@ -20,7 +20,7 @@ export class CreatePostDto {
   color: MarkerColor;
 
   @IsNotEmpty()
-  adress: string;
+  address: string;
 
   @IsNotEmpty()
   title: string;
