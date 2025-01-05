@@ -32,6 +32,9 @@ export class Post extends BaseEntity {
   title: string;
 
   @Column()
+  address: string;
+
+  @Column()
   description: string;
 
   @Column({
