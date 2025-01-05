@@ -19,7 +19,8 @@ export class PostService {
       .createQueryBuilder('post')
       .orderBy('post.date', 'DESC')
       .take(perPage)
-      .skip(offset);
+      .skip(offset)
+      .getMany();
   }
 
   //post 생성
