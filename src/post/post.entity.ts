@@ -3,12 +3,14 @@ import {
   Column,
   CreateDateColumn,
   DeleteDateColumn,
+  Entity,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm';
 import { MarkerColor } from './marker-color.enum';
 import { ColumlnNumericTransformer } from 'src/@common/transformer/numeric.transformer';
 
+@Entity()
 export class Post extends BaseEntity {
   @PrimaryGeneratedColumn()
   id: number;
@@ -45,6 +47,9 @@ export class Post extends BaseEntity {
 
   @Column()
   score: number;
+
+  // @Column()
+  // imageUris: string[];
 
   @CreateDateColumn()
   createdAt: Date;
