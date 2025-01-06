@@ -1,6 +1,7 @@
 import {
   Body,
   Controller,
+  Delete,
   Get,
   Param,
   ParseIntPipe,
@@ -33,5 +34,14 @@ export class PostController {
   }
 
   //post 수정
+  // @Patch('/posts/:id')
+  // updatePostById(@Param('id', ParseIntPipe) id: number) {
+  //   return this.postService.updatePostById(id);
+  // }
+
   //post 삭제
+  @Delete('/posts/:id')
+  deletePost(@Param('id', ParseIntPipe) id: number) {
+    return this.postService.deletePost(id);
+  }
 }
