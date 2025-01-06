@@ -5,8 +5,11 @@ import {
   Get,
   Param,
   ParseIntPipe,
+  Patch,
   Post,
   Query,
+  UsePipes,
+  ValidationPipe,
 } from '@nestjs/common';
 import { PostService } from './post.service';
 import { CreatePostDto } from './dto/create-post.dto';
@@ -29,15 +32,21 @@ export class PostController {
 
   //post 생성
   @Post('/posts')
+  @UsePipes(ValidationPipe)
   createPost(@Body() createPostDto: CreatePostDto) {
     return this.postService.createPost(createPostDto);
   }
 
   //post 수정
-  // @Patch('/posts/:id')
-  // updatePostById(@Param('id', ParseIntPipe) id: number) {
-  //   return this.postService.updatePostById(id);
-  // }
+  @Patch('/posts/:id')
+  @UsePipes(ValidationPipe)
+  updatePost(
+    @Param('id', ParseIntPipe) id: number,
+    @Body()
+    updatePostDto: Omit<CreatePostDto, 'latitude' | 'longditude' | 'address'>,
+  ) {
+    return this.postService.updatePost(id, updatePostDto);
+  }
 
   //post 삭제
   @Delete('/posts/:id')
