@@ -82,4 +82,29 @@ export class PostService {
     }
     return post;
   }
+
+  //post 수정
+  async updatePostById() {}
+
+  //post 삭제
+  async deletePost(id: number) {
+    try {
+      const result = await this.postRepository
+        .createQueryBuilder('post')
+        .delete()
+        .from('post')
+        .where('post.id = :id', { id })
+        .execute();
+
+      if (result.affected === 0) {
+        throw new NotFoundException('존재하지 않는 피드입니다.');
+      }
+      return id;
+    } catch (error) {
+      console.log(error);
+      throw new InternalServerErrorException(
+        '장소를 삭제하는 도중 에러가 발생했습니다.',
+      );
+    }
+  }
 }
