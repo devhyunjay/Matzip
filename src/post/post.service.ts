@@ -84,7 +84,30 @@ export class PostService {
   }
 
   //post 수정
-  async updatePostById() {}
+  //id 에 해당하는 post 조회,바뀐 데이터로 변경 후 db 에 저장
+  async updatePost(
+    id: number,
+    updatePostDto: Omit<CreatePostDto, 'latitude' | 'longditude' | 'address'>,
+  ) {
+    const post = await this.getPostById(id);
+    const { color, title, description, date, score } = updatePostDto;
+
+    post.title = title;
+    post.description = description;
+    post.color = color;
+    post.date = date;
+    post.score = score;
+
+    try {
+      await this.postRepository.save(post);
+    } catch (error) {
+      console.log(error);
+      throw new InternalServerErrorException(
+        '장소를 수정하던중 에러가 발생하였습니다.',
+      );
+    }
+    return post;
+  }
 
   //post 삭제
   async deletePost(id: number) {
