@@ -18,6 +18,11 @@ import { CreatePostDto } from './dto/create-post.dto';
 export class PostController {
   constructor(private postService: PostService) {}
 
+  //마커 조회
+  @Get('/markers')
+  getAllmarkers() {
+    return this.postService.getAllMarkers();
+  }
   //post 조회
   @Get('/posts')
   getPosts(@Query('page') page: number) {
