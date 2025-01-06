@@ -14,6 +14,29 @@ export class PostService {
     @InjectRepository(Post)
     private postRepository: Repository<Post>,
   ) {}
+  //마커 조회
+  async getAllMarkers() {
+    try {
+      const markers = await this.postRepository
+        .createQueryBuilder('post')
+        .select([
+          'post.id',
+          'post.latitude',
+          'post.longitude',
+          'post.color',
+          'post.score',
+        ])
+        .getMany();
+
+      return markers;
+    } catch (error) {
+      console.log(error);
+      throw new InternalServerErrorException(
+        '마커를 가져오는 도중 에러가 발생했습니다.',
+      );
+    }
+  }
+
   //post 조회
   async getPosts(page: number) {
     const perPage = 10;
